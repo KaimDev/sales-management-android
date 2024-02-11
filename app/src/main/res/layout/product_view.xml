@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
+
+    <!--    name-->
+    <TextView
+        android:id="@+id/tvProductNameKey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/product_name_key"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvProductNameValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@id/tvProductNameKey"
+        tools:text="Shirt" />
+
+    <!--    type-->
+    <TextView
+        android:id="@+id/tvProductTypeKey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvProductNameKey"
+        android:layout_marginTop="10dp"
+        android:text="@string/product_type_key"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvProductTypeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvProductNameValue"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/tvProductTypeKey"
+        tools:text="Shirt" />
+
+    <!--    brand-->
+    <TextView
+        android:id="@+id/tvProductBrandKey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvProductTypeKey"
+        android:layout_marginTop="10dp"
+        android:text="@string/product_brand_key"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvProductBrandValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvProductTypeValue"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/tvProductBrandKey"
+        tools:text="Polo" />
+
+    <!--    size-->
+    <TextView
+        android:id="@+id/tvProductSizeKey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvProductBrandKey"
+        android:layout_marginTop="10dp"
+        android:text="@string/product_size_key"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvProductSizeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvProductBrandValue"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/tvProductSizeKey"
+        tools:text="16" />
+
+    <!--    price-->
+    <TextView
+        android:id="@+id/tvProductPriceKey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvProductSizeKey"
+        android:layout_marginTop="10dp"
+        android:text="@string/product_price_key"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvProductPriceValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvProductSizeValue"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/tvProductPriceKey"
+        tools:text="1000" />
+
+    <!--    quantity-->
+    <TextView
+        android:id="@+id/tvProductQuantityKey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvProductPriceKey"
+        android:layout_marginTop="10dp"
+        android:text="@string/product_quantity_key"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvProductQuantityValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvProductPriceValue"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/tvProductQuantityKey"
+        tools:text="100" />
+
+    <!--    description-->
+    <TextView
+        android:id="@+id/tvProductDescriptionKey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvProductQuantityKey"
+        android:layout_marginTop="10dp"
+        android:text="@string/product_description_key"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvProductDescriptionValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvProductQuantityValue"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/tvProductDescriptionKey"
+        tools:text="Lorem Ipsum" />
+
+    <!--    color-->
+    <TextView
+        android:id="@+id/tvProductColorKey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvProductDescriptionKey"
+        android:layout_marginTop="10dp"
+        android:text="@string/product_color_key"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvProductColorValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvProductDescriptionValue"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@id/tvProductColorKey"
+        tools:text="Black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/tvProductColorKey"
+        android:layout_marginTop="10dp"
+        android:background="#DAD8D8" />
+</RelativeLayout>

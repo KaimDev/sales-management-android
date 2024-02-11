@@ -17,6 +17,12 @@
         android:label="@string/menu_customer"
         tools:layout="@layout/fragment_customer" />
 
+    <fragment
+        android:id="@+id/nav_product"
+        android:name="com.example.salesmanagement.ui.product.ProductFragment"
+        android:label="@string/menu_product"
+        tools:layout="@layout/fragment_product" />
+
 <!--    <fragment-->
 <!--        android:id="@+id/nav_gallery"-->
 <!--        android:name="com.example.salesmanagement.ui.gallery.GalleryFragment"-->

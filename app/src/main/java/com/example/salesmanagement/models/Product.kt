@@ -2,6 +2,7 @@ package com.example.salesmanagement.models
 
 data class Product (
     val id: Int,
+    val name: String,
     val type: String,
     val brand: String,
     val size: String,

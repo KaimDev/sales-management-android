@@ -11,4 +11,15 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_customer">Customer</string>
+    <string name="menu_product">Product</string>
+
+    <!--    Product strings-->
+    <string name="product_name_key">Name:</string>
+    <string name="product_type_key">Type:</string>
+    <string name="product_brand_key">Brand:</string>
+    <string name="product_size_key">Size:</string>
+    <string name="product_price_key">Price:</string>
+    <string name="product_quantity_key">Quantity:</string>
+    <string name="product_description_key">Description:</string>
+    <string name="product_color_key">Color:</string>
 </resources>
