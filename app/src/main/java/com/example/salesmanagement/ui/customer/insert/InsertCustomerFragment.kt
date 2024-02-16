@@ -17,9 +17,15 @@ class InsertCustomerFragment : Fragment()
         savedInstanceState: Bundle?
     ): View
     {
-        _binding = FragmentInsertCustomerBinding.inflate(inflater, container, false);
+        _binding = FragmentInsertCustomerBinding.inflate(inflater, container, false)
         val root: View = _binding!!.root
 
         return root
+    }
+
+    override fun onDestroyView()
+    {
+        super.onDestroyView()
+        _binding = null
     }
 }

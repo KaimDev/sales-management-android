@@ -52,4 +52,10 @@ class CustomerFragment : Fragment()
     {
         findNavController().navigate(R.id.action_nav_customer_to_nav_insert_customer)
     }
+
+    override fun onDestroy()
+    {
+        super.onDestroy()
+        _binding = null
+    }
 }
