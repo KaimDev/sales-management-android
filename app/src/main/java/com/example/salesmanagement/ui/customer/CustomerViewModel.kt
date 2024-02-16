@@ -1,22 +1,33 @@
 package com.example.salesmanagement.ui.customer
 
-import androidx.lifecycle.LiveData
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.salesmanagement.models.Customer
+import com.example.salesmanagement.database.DatabaseSingleton
+import com.example.salesmanagement.database.entities.Customer
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
-class CustomerViewModel : ViewModel()
+class CustomerViewModel: ViewModel()
 {
-    // List of customers
-    private val _customers = MutableLiveData<List<Customer>>().apply {
-        value = listOf(
-            Customer(1, "John Doe", "1234567890", "john@email.com", "123 Main St"),
-            Customer(2, "Jane Doe", "0987654321", "jane@email.com", "456 Main St"),
-            Customer(3, "John Smith", "1234567890", "", "123 Main St"),
-            Customer(4, "Lourdes Lopez", "1234567890", "lopez@email.com", ""),
-            Customer(5, "John Doe", "1234567890", null, null)
-        )
-    }
+    private fun getDatabase(context: Context) = DatabaseSingleton.getInstance(context)
 
-    val customers: LiveData<List<Customer>> = _customers
+    fun getCustomers(context: Context): MutableLiveData<List<Customer>>
+    {
+        val customerList = MutableLiveData<List<Customer>>()
+        val db = getDatabase(context)
+
+        var deferred = GlobalScope.async {
+            customerList.value = db.customerDao().getAll()
+        }
+
+        GlobalScope.launch(Dispatchers.Main) {
+            deferred.await()
+        }
+
+        return customerList
+    }
 }
+

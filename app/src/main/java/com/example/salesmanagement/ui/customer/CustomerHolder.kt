@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.salesmanagement.R
-import com.example.salesmanagement.models.Customer
+import com.example.salesmanagement.database.entities.Customer
 
 class CustomerHolder(val view: View) : RecyclerView.ViewHolder(view)
 {

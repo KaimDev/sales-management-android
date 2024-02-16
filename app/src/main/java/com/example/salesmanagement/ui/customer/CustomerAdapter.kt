@@ -3,8 +3,8 @@ package com.example.salesmanagement.ui.customer
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.salesmanagement.models.Customer
 import com.example.salesmanagement.R
+import com.example.salesmanagement.database.entities.Customer
 
 class CustomerAdapter(private val customerList: List<Customer>) : RecyclerView.Adapter<CustomerHolder>()
 {
