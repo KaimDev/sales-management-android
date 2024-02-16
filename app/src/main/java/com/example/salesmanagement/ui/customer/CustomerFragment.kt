@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.salesmanagement.databinding.FragmentCustomerBinding
 import com.example.salesmanagement.models.Customer
+import com.example.salesmanagement.R
 
 class CustomerFragment : Fragment()
 {
@@ -29,7 +31,14 @@ class CustomerFragment : Fragment()
 
         initRecyclerView(customerViewModel.customers.value!!)
 
+        initListeners()
+
         return root
+    }
+
+    private fun initListeners()
+    {
+        binding.fabAddCustomer.setOnClickListener { goToAddCustomer() }
     }
 
     private fun initRecyclerView(customers: List<Customer>)
@@ -37,5 +46,10 @@ class CustomerFragment : Fragment()
         val rcCustomer = binding.rvCustomer
         rcCustomer.layoutManager = LinearLayoutManager(this.context)
         rcCustomer.adapter = CustomerAdapter(customers)
+    }
+
+    private fun goToAddCustomer()
+    {
+        findNavController().navigate(R.id.action_nav_customer_to_nav_insert_customer)
     }
 }
