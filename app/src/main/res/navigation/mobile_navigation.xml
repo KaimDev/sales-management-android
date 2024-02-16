@@ -31,8 +31,18 @@
         android:id="@+id/nav_product"
         android:name="com.example.salesmanagement.ui.product.ProductFragment"
         android:label="@string/menu_product"
-        tools:layout="@layout/fragment_product" />
+        tools:layout="@layout/fragment_product">
 
+        <action
+            android:id="@+id/action_nav_product_to_nav_insert_product"
+            app:destination="@id/nav_insert_product" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_insert_product"
+        android:name="com.example.salesmanagement.ui.product.insert.InsertProductFragment"
+        tools:layout="@layout/fragment_insert_product"/>
 <!--    <fragment-->
 <!--        android:id="@+id/nav_gallery"-->
 <!--        android:name="com.example.salesmanagement.ui.gallery.GalleryFragment"-->
