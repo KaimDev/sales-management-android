@@ -10,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.salesmanagement.databinding.FragmentCustomerBinding
 import com.example.salesmanagement.R
-import com.example.salesmanagement.database.entities.Customer
 
 class CustomerFragment : Fragment()
 {
@@ -22,7 +21,8 @@ class CustomerFragment : Fragment()
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View
+    {
         val customerViewModel =
             ViewModelProvider(this).get(CustomerViewModel::class.java)
 

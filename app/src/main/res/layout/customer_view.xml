@@ -16,7 +16,8 @@
             android:layout_height="match_parent"
             android:src="@drawable/ic_menu_customer"
             android:tint="@color/purple_200"
-            tools:ignore="UseAppTint" />
+            tools:ignore="UseAppTint"
+            android:contentDescription="@string/customer_profile" />
 
     </RelativeLayout>
 
@@ -25,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/rlCustomer"
-        android:textSize="20dp"
+        android:textSize="20sp"
         tools:text="Name" />
 
     <TextView

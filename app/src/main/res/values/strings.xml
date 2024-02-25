@@ -8,6 +8,8 @@
     <string name="menu_customer">Customer</string>
     <string name="menu_product">Product</string>
 
+    <string name="customer_profile">Customer Profile</string>
+
     <!--    Product strings-->
     <string name="product_name_key">Name:</string>
     <string name="product_type_key">Type:</string>
