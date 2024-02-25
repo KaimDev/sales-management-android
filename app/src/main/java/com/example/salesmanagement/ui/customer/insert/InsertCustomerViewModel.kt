@@ -11,8 +11,8 @@ class InsertCustomerViewModel : ViewModel()
         val textInput = textInputLayout.editText as TextInputEditText
         if (textInput.text.toString().trim().isEmpty())
         {
-            textInput.error = "Required Field!"
-            textInput.requestFocus()
+            textInputLayout.error = "Required Field!"
+            textInputLayout.requestFocus()
             return false
         } else
         {
@@ -30,13 +30,13 @@ class InsertCustomerViewModel : ViewModel()
         val regex = Regex("^[0-9]*\$")
         if (textInput.text.toString().trim().isEmpty())
         {
-            textInput.error = "Required Field!"
-            textInput.requestFocus()
+            textInputLayout.error = "Required Field!"
+            textInputLayout.requestFocus()
             return false
         } else if (!regex.matches(textInput.text.toString()))
         {
-            textInput.error = "Invalid Phone Number!"
-            textInput.requestFocus()
+            textInputLayout.error = "Invalid Phone Number!"
+            textInputLayout.requestFocus()
             return false
         } else
         {
@@ -55,8 +55,8 @@ class InsertCustomerViewModel : ViewModel()
         val regex = Regex("^[A-Za-z0-9+_.-]+@(.+)\$")
         if (textInput.text.toString().trim().isNotEmpty() && !regex.matches(textInput.text.toString()))
         {
-            textInput.error = "Invalid Email!"
-            textInput.requestFocus()
+            textInputLayout.error = "Invalid Email!"
+            textInputLayout.requestFocus()
             return false
         } else
         {
