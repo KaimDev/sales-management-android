@@ -1,19 +1,21 @@
 package com.example.salesmanagement.database.daos
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.salesmanagement.database.entities.Customer
 
 @Dao
 interface CustomerDao
 {
-    @Insert
-    fun insert(customer: Customer)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(customer: Customer)
 
-    @Query("SELECT * FROM customer")
-    fun getAll(): List<Customer>
+    @Query("SELECT * FROM customer ORDER BY id ASC")
+    fun getAll(): LiveData<List<Customer>>
 
     @Query("SELECT * FROM customer WHERE id = :id")
     fun getById(id: Int): Customer

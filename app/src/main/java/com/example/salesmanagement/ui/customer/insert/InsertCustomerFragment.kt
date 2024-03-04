@@ -8,7 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.salesmanagement.databinding.FragmentInsertCustomerBinding
+
+import com.example.salesmanagement.R
 
 class InsertCustomerFragment : Fragment()
 {
@@ -33,9 +36,26 @@ class InsertCustomerFragment : Fragment()
 
     private fun setUpListeners()
     {
-        _binding!!.tilCustomerName.editText!!.addTextChangedListener(TextFieldValidation(_binding!!.tilCustomerName))
-        _binding!!.tilCustomerPhone.editText!!.addTextChangedListener(TextFieldValidation(_binding!!.tilCustomerPhone))
-        _binding!!.tilCustomerEmail.editText!!.addTextChangedListener(TextFieldValidation(_binding!!.tilCustomerEmail))
+        val tilCustomerName = _binding!!.tilCustomerName
+        val tilCustomerPhone = _binding!!.tilCustomerPhone
+        val tilCustomerEmail = _binding!!.tilCustomerEmail
+        val tilCustomerAddress = _binding!!.tilCustomerAddress
+
+        tilCustomerName.editText!!.addTextChangedListener(TextFieldValidation(tilCustomerName))
+        tilCustomerPhone.editText!!.addTextChangedListener(TextFieldValidation(tilCustomerPhone))
+        tilCustomerEmail.editText!!.addTextChangedListener(TextFieldValidation(tilCustomerEmail))
+
+        _binding!!.fabSave.setOnClickListener {
+            viewModel.saveCustomer(
+                tilCustomerName,
+                tilCustomerPhone,
+                tilCustomerEmail,
+                tilCustomerAddress
+            )
+
+            // back to previous fragment
+            findNavController().navigate(R.id.action_nav_insert_customer_to_nav_customer)
+        }
     }
 
     override fun onDestroyView()
@@ -58,15 +78,15 @@ class InsertCustomerFragment : Fragment()
         {
             when (view.id)
             {
-                _binding!!.tilCustomerName.id    -> viewModel.validateCustomerName(
+                _binding!!.tilCustomerName.id -> viewModel.validateCustomerName(
                     _binding!!.tilCustomerName,
                 )
 
-                _binding!!.tilCustomerPhone.id   -> viewModel.validateCustomerPhone(
+                _binding!!.tilCustomerPhone.id -> viewModel.validateCustomerPhone(
                     _binding!!.tilCustomerPhone,
                 )
 
-                _binding!!.tilCustomerEmail.id   -> viewModel.validateCustomerEmail(
+                _binding!!.tilCustomerEmail.id -> viewModel.validateCustomerEmail(
                     _binding!!.tilCustomerEmail,
                 )
             }

@@ -25,7 +25,11 @@
     <fragment
         android:id="@+id/nav_insert_customer"
         android:name="com.example.salesmanagement.ui.customer.insert.InsertCustomerFragment"
-        tools:layout="@layout/fragment_insert_customer"/>
+        tools:layout="@layout/fragment_insert_customer">
+        <action
+            android:id="@+id/action_nav_insert_customer_to_nav_customer"
+            app:destination="@id/nav_customer" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_product"

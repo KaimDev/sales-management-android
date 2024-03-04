@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.salesmanagement.databinding.FragmentCustomerBinding
 import com.example.salesmanagement.R
 
@@ -43,10 +42,10 @@ class CustomerFragment : Fragment()
 
     private fun initRecyclerView(viewModel: CustomerViewModel)
     {
-        val customers = viewModel.getCustomers(requireContext()).value ?: listOf()
-        val rcCustomer = binding.rvCustomer
-        rcCustomer.layoutManager = LinearLayoutManager(this.context)
-        rcCustomer.adapter = CustomerAdapter(customers)
+//        val customers = viewModel.getCustomers(requireContext()).value ?: emptyList()
+//        val rcCustomer = binding.rvCustomer
+//        rcCustomer.layoutManager = LinearLayoutManager(this.context)
+//        rcCustomer.adapter = CustomerAdapter(customers)
     }
 
     private fun goToAddCustomer()
