@@ -46,15 +46,18 @@ class InsertCustomerFragment : Fragment()
         tilCustomerEmail.editText!!.addTextChangedListener(TextFieldValidation(tilCustomerEmail))
 
         _binding!!.fabSave.setOnClickListener {
-            viewModel.saveCustomer(
+            val result = viewModel.saveCustomer(
                 tilCustomerName,
                 tilCustomerPhone,
                 tilCustomerEmail,
                 tilCustomerAddress
             )
 
-            // back to previous fragment
-            findNavController().navigate(R.id.action_nav_insert_customer_to_nav_customer)
+            if (result)
+            {
+                // back to previous fragment
+                findNavController().navigate(R.id.action_nav_insert_customer_to_nav_customer)
+            }
         }
     }
 

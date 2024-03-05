@@ -100,7 +100,7 @@ class InsertCustomerViewModel(application: Application) : AndroidViewModel(appli
         tilCustomerPhone: TextInputLayout,
         tilCustomerEmail: TextInputLayout,
         tilCustomerAddress: TextInputLayout
-    )
+    ) : Boolean
     {
         if (validateCustomerName(textInputLayout) &&
             validateCustomerPhone(tilCustomerPhone) &&
@@ -122,6 +122,10 @@ class InsertCustomerViewModel(application: Application) : AndroidViewModel(appli
                 "Customer saved successfully!",
                 Toast.LENGTH_SHORT
             ).show()
+
+            return true
         }
+
+        return false
     }
 }
