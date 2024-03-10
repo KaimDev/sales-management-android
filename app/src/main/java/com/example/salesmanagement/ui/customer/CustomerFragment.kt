@@ -14,6 +14,8 @@ class CustomerFragment : Fragment()
 {
     private var _binding: FragmentCustomerBinding? = null
 
+    private lateinit var customerViewModel: CustomerViewModel
+
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -22,13 +24,12 @@ class CustomerFragment : Fragment()
         savedInstanceState: Bundle?
     ): View
     {
-        val customerViewModel =
-            ViewModelProvider(this).get(CustomerViewModel::class.java)
+        customerViewModel = ViewModelProvider(this)[CustomerViewModel::class.java]
 
         _binding = FragmentCustomerBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        initRecyclerView(customerViewModel)
+        initRecyclerView()
 
         initListeners()
 
@@ -40,12 +41,17 @@ class CustomerFragment : Fragment()
         binding.fabAddCustomer.setOnClickListener { goToAddCustomer() }
     }
 
-    private fun initRecyclerView(viewModel: CustomerViewModel)
+    private fun initRecyclerView()
     {
-//        val customers = viewModel.getCustomers(requireContext()).value ?: emptyList()
-//        val rcCustomer = binding.rvCustomer
-//        rcCustomer.layoutManager = LinearLayoutManager(this.context)
-//        rcCustomer.adapter = CustomerAdapter(customers)
+        val recyclerView = binding.rvCustomer
+        val adapter = CustomerAdapter()
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager =
+            androidx.recyclerview.widget.LinearLayoutManager(requireContext())
+
+        customerViewModel.customers.observe(viewLifecycleOwner) { customer ->
+            adapter.setData(customer)
+        }
     }
 
     private fun goToAddCustomer()

@@ -9,7 +9,7 @@ import com.example.salesmanagement.database.repositories.CustomerRepository
 
 class CustomerViewModel(application: Application): AndroidViewModel(application)
 {
-    private val customers: LiveData<List<Customer>>
+    val customers: LiveData<List<Customer>>
     private val customerRepository: CustomerRepository
 
     init
