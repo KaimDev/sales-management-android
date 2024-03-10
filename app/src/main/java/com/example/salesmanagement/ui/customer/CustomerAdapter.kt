@@ -16,7 +16,7 @@ class CustomerAdapter(private val tvEmpty: TextView) : RecyclerView.Adapter<Cust
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomerHolder
     {
-        return CustomerHolder(LayoutInflater.from(parent.context).inflate(R.layout.customer_view, parent, false))
+        return CustomerHolder(LayoutInflater.from(parent.context).inflate(R.layout.customer_holder_row, parent, false))
     }
 
     override fun onBindViewHolder(holder: CustomerHolder, position: Int)
