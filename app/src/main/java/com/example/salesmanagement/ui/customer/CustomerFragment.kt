@@ -44,7 +44,7 @@ class CustomerFragment : Fragment()
     private fun initRecyclerView()
     {
         val recyclerView = binding.rvCustomer
-        val adapter = CustomerAdapter()
+        val adapter = CustomerAdapter(binding.tvEmpty)
         recyclerView.adapter = adapter
         recyclerView.layoutManager =
             androidx.recyclerview.widget.LinearLayoutManager(requireContext())

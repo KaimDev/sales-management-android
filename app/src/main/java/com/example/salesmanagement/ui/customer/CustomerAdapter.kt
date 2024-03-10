@@ -3,11 +3,12 @@ package com.example.salesmanagement.ui.customer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.salesmanagement.R
 import com.example.salesmanagement.database.entities.Customer
 
-class CustomerAdapter : RecyclerView.Adapter<CustomerAdapter.CustomerHolder>()
+class CustomerAdapter(private val tvEmpty: TextView) : RecyclerView.Adapter<CustomerAdapter.CustomerHolder>()
 {
     private var customerList = emptyList<Customer>()
 
@@ -21,10 +22,10 @@ class CustomerAdapter : RecyclerView.Adapter<CustomerAdapter.CustomerHolder>()
     override fun onBindViewHolder(holder: CustomerHolder, position: Int)
     {
         val currentItem = customerList[position]
-        holder.itemView.findViewById<android.widget.TextView>(R.id.tvName).text = currentItem.name
-        holder.itemView.findViewById<android.widget.TextView>(R.id.tvPhone).text = currentItem.phone
-        holder.itemView.findViewById<android.widget.TextView>(R.id.tvEmail).text = currentItem.email
-        holder.itemView.findViewById<android.widget.TextView>(R.id.tvAddress).text = currentItem.address
+        holder.itemView.findViewById<TextView>(R.id.tvName).text = currentItem.name
+        holder.itemView.findViewById<TextView>(R.id.tvPhone).text = currentItem.phone
+        holder.itemView.findViewById<TextView>(R.id.tvEmail).text = currentItem.email
+        holder.itemView.findViewById<TextView>(R.id.tvAddress).text = currentItem.address
     }
 
     override fun getItemCount(): Int = customerList.size
@@ -33,5 +34,19 @@ class CustomerAdapter : RecyclerView.Adapter<CustomerAdapter.CustomerHolder>()
     {
         customerList = customers
         notifyDataSetChanged()
+
+        handleEmptyView()
+    }
+
+    private fun handleEmptyView()
+    {
+        if (customerList.isEmpty())
+        {
+            tvEmpty.visibility = View.VISIBLE
+        }
+        else
+        {
+            tvEmpty.visibility = View.GONE
+        }
     }
 }
