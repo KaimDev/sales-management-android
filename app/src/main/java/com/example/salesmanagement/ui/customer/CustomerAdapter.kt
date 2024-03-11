@@ -3,7 +3,9 @@ package com.example.salesmanagement.ui.customer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.salesmanagement.R
 import com.example.salesmanagement.database.entities.Customer
@@ -26,6 +28,12 @@ class CustomerAdapter(private val tvEmpty: TextView) : RecyclerView.Adapter<Cust
         holder.itemView.findViewById<TextView>(R.id.tvPhone).text = currentItem.phone
         holder.itemView.findViewById<TextView>(R.id.tvEmail).text = currentItem.email
         holder.itemView.findViewById<TextView>(R.id.tvAddress).text = currentItem.address
+
+        // Navigate to update customer fragment
+        holder.itemView.findViewById<RelativeLayout>(R.id.customer_holder_view).setOnClickListener {
+            val action = CustomerFragmentDirections.actionNavCustomerToNavUpdateCustomer(currentItem)
+            holder.itemView.findNavController().navigate(action)
+        }
     }
 
     override fun getItemCount(): Int = customerList.size

@@ -11,6 +11,7 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
+    <!--  CUSTOMER  -->
     <fragment
         android:id="@+id/nav_customer"
         android:name="com.example.salesmanagement.ui.customer.CustomerFragment"
@@ -20,17 +21,38 @@
         <action
             android:id="@+id/action_nav_customer_to_nav_insert_customer"
             app:destination="@id/nav_insert_customer" />
+        <action
+            android:id="@+id/action_nav_customer_to_nav_update_customer"
+            app:destination="@id/nav_update_customer" />
     </fragment>
 
+    <!--  INSERT CUSTOMER  -->
     <fragment
         android:id="@+id/nav_insert_customer"
         android:name="com.example.salesmanagement.ui.customer.insert.InsertCustomerFragment"
+        android:label="@string/graph_insert_customer"
         tools:layout="@layout/fragment_insert_customer">
         <action
             android:id="@+id/action_nav_insert_customer_to_nav_customer"
             app:destination="@id/nav_customer" />
     </fragment>
 
+
+    <!--  UPDATE CUSTOMER  -->
+    <fragment
+        android:id="@+id/nav_update_customer"
+        android:name="com.example.salesmanagement.ui.customer.update.UpdateCustomerFragment"
+        android:label="@string/graph_update_customer"
+        tools:layout="@layout/fragment_update_customer">
+        <action
+            android:id="@+id/action_nav_update_customer_to_nav_customer"
+            app:destination="@id/nav_customer" />
+        <argument
+            android:name="currentCustomer"
+            app:argType="com.example.salesmanagement.database.entities.Customer" />
+    </fragment>
+
+    <!--  PRODUCT  -->
     <fragment
         android:id="@+id/nav_product"
         android:name="com.example.salesmanagement.ui.product.ProductFragment"
@@ -43,19 +65,14 @@
 
     </fragment>
 
+    <!--  INSERT PRODUCT  -->
     <fragment
         android:id="@+id/nav_insert_product"
         android:name="com.example.salesmanagement.ui.product.insert.InsertProductFragment"
-        tools:layout="@layout/fragment_insert_product"/>
-<!--    <fragment-->
-<!--        android:id="@+id/nav_gallery"-->
-<!--        android:name="com.example.salesmanagement.ui.gallery.GalleryFragment"-->
-<!--        android:label="@string/menu_gallery"-->
-<!--        tools:layout="@layout/fragment_gallery" />-->
-
-<!--    <fragment-->
-<!--        android:id="@+id/nav_slideshow"-->
-<!--        android:name="com.example.salesmanagement.ui.slideshow.SlideshowFragment"-->
-<!--        android:label="@string/menu_slideshow"-->
-<!--        tools:layout="@layout/fragment_slideshow" />-->
+        android:label="@string/graph_insert_product"
+        tools:layout="@layout/fragment_insert_product">
+        <action
+            android:id="@+id/action_nav_insert_product_to_nav_product"
+            app:destination="@id/nav_product" />
+    </fragment>
 </navigation>

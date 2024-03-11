@@ -36,7 +36,14 @@
 
     <!--    Actions-->
     <string name="save">Save</string>
+    <string name="update">Update</string>
 
     <!--    Customer view-->
     <string name="customer_empty">There are no customers yet</string>
+
+    <!-- Graph Labels -->
+    <string name="graph_insert_customer">Insert Customer</string>
+    <string name="graph_insert_product">Insert Product</string>
+    <string name="graph_update_customer">Update Customer</string>
+    <string name="graph_update_product">Update Product</string>
 </resources>
