@@ -1,8 +1,6 @@
 package com.example.salesmanagement.ui.customer.insert
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +10,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.salesmanagement.databinding.FragmentInsertCustomerBinding
 
 import com.example.salesmanagement.R
+import com.example.salesmanagement.validations.EmailValidator
+import com.example.salesmanagement.validations.PhoneValidator
+import com.example.salesmanagement.validations.TextIsNotEmptyValidator
 
 class InsertCustomerFragment : Fragment()
 {
@@ -41,9 +42,10 @@ class InsertCustomerFragment : Fragment()
         val tilCustomerEmail = _binding!!.tilCustomerEmail
         val tilCustomerAddress = _binding!!.tilCustomerAddress
 
-        tilCustomerName.editText!!.addTextChangedListener(TextFieldValidation(tilCustomerName))
-        tilCustomerPhone.editText!!.addTextChangedListener(TextFieldValidation(tilCustomerPhone))
-        tilCustomerEmail.editText!!.addTextChangedListener(TextFieldValidation(tilCustomerEmail))
+        tilCustomerName.editText!!.addTextChangedListener(TextIsNotEmptyValidator(tilCustomerName))
+        tilCustomerPhone.editText!!.addTextChangedListener(PhoneValidator(tilCustomerPhone))
+        tilCustomerEmail.editText!!.addTextChangedListener(EmailValidator(tilCustomerEmail))
+
 
         _binding!!.fabSave.setOnClickListener {
             val result = viewModel.saveCustomer(
@@ -65,35 +67,5 @@ class InsertCustomerFragment : Fragment()
     {
         super.onDestroyView()
         _binding = null
-    }
-
-    inner class TextFieldValidation(private val view: View) : TextWatcher
-    {
-        override fun afterTextChanged(s: Editable?)
-        {
-        }
-
-        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int)
-        {
-        }
-
-        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int)
-        {
-            when (view.id)
-            {
-                _binding!!.tilCustomerName.id -> viewModel.validateCustomerName(
-                    _binding!!.tilCustomerName,
-                )
-
-                _binding!!.tilCustomerPhone.id -> viewModel.validateCustomerPhone(
-                    _binding!!.tilCustomerPhone,
-                )
-
-                _binding!!.tilCustomerEmail.id -> viewModel.validateCustomerEmail(
-                    _binding!!.tilCustomerEmail,
-                )
-            }
-        }
-
     }
 }
