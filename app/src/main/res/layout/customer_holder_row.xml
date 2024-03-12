@@ -67,7 +67,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:layout_below="@id/tvAddress"
         android:layout_marginTop="20dp"
         android:background="#DAD8D8" />
