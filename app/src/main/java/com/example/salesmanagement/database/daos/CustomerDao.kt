@@ -6,6 +6,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.example.salesmanagement.database.entities.Customer
 
 @Dao
@@ -22,4 +23,7 @@ interface CustomerDao
 
     @Delete
     fun delete(customer: Customer)
+
+    @Update
+    suspend fun update(customer: Customer)
 }
