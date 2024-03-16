@@ -22,7 +22,7 @@ interface CustomerDao
     fun getById(id: Int): Customer
 
     @Delete
-    fun delete(customer: Customer)
+    suspend fun delete(customer: Customer)
 
     @Update
     suspend fun update(customer: Customer)
