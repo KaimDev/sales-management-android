@@ -12,7 +12,7 @@ class CustomerRepository(private val customerDao: CustomerDao)
         customerDao.insert(customer)
     }
 
-    fun delete(customer: Customer)
+    suspend fun delete(customer: Customer)
     {
         customerDao.delete(customer)
     }

@@ -31,7 +31,7 @@ class UpdateCustomerViewModel(application: Application) : AndroidViewModel(appli
         phoneLayout: TextInputLayout,
         emailLayout: TextInputLayout,
         addressLayout: TextInputLayout
-    ) : Boolean
+    ): Boolean
     {
         if (validateInputs(nameLayout, phoneLayout, emailLayout))
         {
@@ -94,5 +94,18 @@ class UpdateCustomerViewModel(application: Application) : AndroidViewModel(appli
         }
 
         return result
+    }
+
+    fun deleteCustomer(customer: Customer)
+    {
+        viewModelScope.launch(Dispatchers.IO)
+        {
+            repository.delete(customer)
+
+            withContext(Dispatchers.Main)
+            {
+                Toast.makeText(getApplication(), "Customer deleted", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }

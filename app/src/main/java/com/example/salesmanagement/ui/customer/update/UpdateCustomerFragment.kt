@@ -1,11 +1,17 @@
 package com.example.salesmanagement.ui.customer.update
 
+import android.app.AlertDialog
 import androidx.fragment.app.viewModels
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.salesmanagement.databinding.FragmentUpdateCustomerBinding
@@ -14,6 +20,7 @@ import com.example.salesmanagement.validations.PhoneValidator
 import com.example.salesmanagement.validations.TextIsNotEmptyValidator
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.textfield.TextInputLayout
+import com.example.salesmanagement.R
 
 class UpdateCustomerFragment : Fragment()
 {
@@ -26,7 +33,7 @@ class UpdateCustomerFragment : Fragment()
     private lateinit var tilCustomerPhone: TextInputLayout
     private lateinit var tilCustomerEmail: TextInputLayout
     private lateinit var tilCustomerAddress: TextInputLayout
-    private lateinit var fabUpdateButton : ExtendedFloatingActionButton
+    private lateinit var fabUpdateButton: ExtendedFloatingActionButton
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,11 +42,50 @@ class UpdateCustomerFragment : Fragment()
     {
         _binding = FragmentUpdateCustomerBinding.inflate(inflater, container, false)
 
+        onCreateMenu()
         initializeComponents()
         configureComponents()
         setupListeners()
 
         return _binding!!.root
+    }
+
+    private fun onCreateMenu()
+    {
+        (requireActivity() as MenuHost).addMenuProvider(object : MenuProvider
+        {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater)
+            {
+                menuInflater.inflate(R.menu.delete_menu, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean
+            {
+                return handleItems(menuItem)
+            }
+        }, viewLifecycleOwner)
+
+    }
+
+    private fun handleItems(menuItem: MenuItem): Boolean
+    {
+        if (menuItem.itemId == R.id.action_delete_customer)
+        {
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setPositiveButton("Yes") { _, _ ->
+                viewModel.deleteCustomer(args.currentCustomer)
+                findNavController().navigate(UpdateCustomerFragmentDirections.actionNavUpdateCustomerToNavCustomer())
+            }
+            builder.setNegativeButton("No") { _, _ -> }
+            builder.setTitle("Delete ${args.currentCustomer.name}?")
+            builder.setMessage("Are you sure you want to delete ${args.currentCustomer.name}?")
+            builder.create().show()
+
+            return true
+        }
+
+        val navController = findNavController()
+        return navController.navigateUp()
     }
 
     private fun initializeComponents()
