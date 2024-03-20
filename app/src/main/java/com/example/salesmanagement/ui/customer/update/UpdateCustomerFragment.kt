@@ -10,7 +10,6 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -22,7 +21,7 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.google.android.material.textfield.TextInputLayout
 import com.example.salesmanagement.R
 
-class UpdateCustomerFragment : Fragment()
+class UpdateCustomerFragment : Fragment(), MenuProvider
 {
     private val viewModel: UpdateCustomerViewModel by viewModels()
     private var _binding: FragmentUpdateCustomerBinding? = null
@@ -42,7 +41,6 @@ class UpdateCustomerFragment : Fragment()
     {
         _binding = FragmentUpdateCustomerBinding.inflate(inflater, container, false)
 
-        onCreateMenu()
         initializeComponents()
         configureComponents()
         setupListeners()
@@ -50,21 +48,21 @@ class UpdateCustomerFragment : Fragment()
         return _binding!!.root
     }
 
-    private fun onCreateMenu()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
-        (requireActivity() as MenuHost).addMenuProvider(object : MenuProvider
-        {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater)
-            {
-                menuInflater.inflate(R.menu.delete_menu, menu)
-            }
+        super.onViewCreated(view, savedInstanceState)
 
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean
-            {
-                return handleItems(menuItem)
-            }
-        }, viewLifecycleOwner)
+        activity?.addMenuProvider(this, viewLifecycleOwner)
+    }
 
+    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater)
+    {
+        menuInflater.inflate(R.menu.delete_menu, menu)
+    }
+
+    override fun onMenuItemSelected(menuItem: MenuItem): Boolean
+    {
+        return handleItems(menuItem)
     }
 
     private fun handleItems(menuItem: MenuItem): Boolean
