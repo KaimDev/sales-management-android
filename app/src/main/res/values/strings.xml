@@ -42,6 +42,9 @@
     <!--    Customer view-->
     <string name="customer_empty">There are no customers yet</string>
 
+    <!--    Product view-->
+    <string name="product_empty">There are no products yet</string>
+
     <!-- Graph Labels -->
     <string name="graph_insert_customer">Insert Customer</string>
     <string name="graph_insert_product">Insert Product</string>
