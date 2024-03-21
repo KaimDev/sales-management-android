@@ -1,9 +1,14 @@
 package com.example.salesmanagement.ui.product.update
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -13,8 +18,8 @@ import com.example.salesmanagement.validations.NumberMustBePositive
 import com.example.salesmanagement.validations.TextIsNotEmptyValidator
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.textfield.TextInputLayout
-
-class UpdateProductFragment : Fragment()
+import com.example.salesmanagement.R
+class UpdateProductFragment : Fragment(), MenuProvider
 {
     private var _binding: FragmentUpdateProductBinding? = null
     private val args by navArgs<UpdateProductFragmentArgs>()
@@ -46,6 +51,44 @@ class UpdateProductFragment : Fragment()
         initializeListeners()
 
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+    {
+        super.onViewCreated(view, savedInstanceState)
+
+        activity?.addMenuProvider(this, viewLifecycleOwner)
+    }
+
+    override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater)
+    {
+        menuInflater.inflate(R.menu.delete_menu, menu)
+    }
+
+    override fun onMenuItemSelected(menuItem: MenuItem): Boolean
+    {
+        return handleItems(menuItem)
+    }
+
+    private fun handleItems(menuItem: MenuItem): Boolean
+    {
+        if (menuItem.itemId == R.id.action_delete)
+        {
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setPositiveButton("Yes") { _, _ ->
+                viewModel.deleteProduct(args.currentProduct)
+                findNavController().navigate(UpdateProductFragmentDirections.actionNavUpdateProductToNavProduct())
+            }
+            builder.setNegativeButton("No") { _, _ -> }
+            builder.setTitle("Delete ${args.currentProduct.name}?")
+            builder.setMessage("Are you sure you want to delete ${args.currentProduct.name}?")
+            builder.create().show()
+
+            return true
+        }
+
+        val navController = findNavController()
+        return navController.navigateUp()
     }
 
     private fun initializeComponents()

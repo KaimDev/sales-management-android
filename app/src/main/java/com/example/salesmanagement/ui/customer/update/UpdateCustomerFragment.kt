@@ -67,7 +67,7 @@ class UpdateCustomerFragment : Fragment(), MenuProvider
 
     private fun handleItems(menuItem: MenuItem): Boolean
     {
-        if (menuItem.itemId == R.id.action_delete_customer)
+        if (menuItem.itemId == R.id.action_delete)
         {
             val builder = AlertDialog.Builder(requireContext())
             builder.setPositiveButton("Yes") { _, _ ->

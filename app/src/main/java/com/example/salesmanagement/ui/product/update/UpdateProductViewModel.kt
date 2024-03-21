@@ -134,4 +134,17 @@ class UpdateProductViewModel(application: Application) : AndroidViewModel(applic
 
         return result
     }
+
+    fun deleteProduct(product: Product)
+    {
+        viewModelScope.launch(Dispatchers.IO)
+        {
+            repository.delete(product)
+
+            withContext(Dispatchers.Main)
+            {
+                Toast.makeText(getApplication(), "Product deleted", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 }
