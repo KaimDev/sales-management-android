@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.salesmanagement.databinding.FragmentUpdateProductBinding
 import com.example.salesmanagement.validations.NumberMustBePositive
@@ -16,6 +18,7 @@ class UpdateProductFragment : Fragment()
 {
     private var _binding: FragmentUpdateProductBinding? = null
     private val args by navArgs<UpdateProductFragmentArgs>()
+    private val viewModel: UpdateProductViewModel by viewModels()
 
     // Components
     private lateinit var tilProductName: TextInputLayout
@@ -86,6 +89,19 @@ class UpdateProductFragment : Fragment()
 
     private fun updateProduct()
     {
+        val result = viewModel.updateProduct(
+            args.currentProduct.id,
+            tilProductName,
+            tilProductType,
+            tilProductBrand,
+            tilProductSize,
+            tilProductPrice,
+            tilProductQuantity,
+            tilProductDescription,
+            tilProductColor
+        )
 
+        if (result)
+            findNavController().navigate(UpdateProductFragmentDirections.actionNavUpdateProductToNavProduct())
     }
 }

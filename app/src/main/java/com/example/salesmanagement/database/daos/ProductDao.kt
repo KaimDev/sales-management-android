@@ -21,9 +21,9 @@ interface ProductDao
     @Query("SELECT * FROM product WHERE id = :id")
     fun getById(id: Int): Product
 
+    @Update
+    suspend fun update(product: Product)
+
     @Delete
     fun delete(product: Product)
-
-    @Update
-    fun update(product: Product)
 }
