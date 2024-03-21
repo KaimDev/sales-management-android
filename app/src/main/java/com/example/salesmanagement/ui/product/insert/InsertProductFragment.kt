@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.salesmanagement.databinding.FragmentInsertProductBinding
 import com.example.salesmanagement.validations.NumberMustBePositive
 import com.example.salesmanagement.validations.TextIsNotEmptyValidator
 import com.google.android.material.textfield.TextInputLayout
+import com.example.salesmanagement.R
 
 class InsertProductFragment : Fragment()
 {
@@ -63,6 +65,25 @@ class InsertProductFragment : Fragment()
         tilProductSize.editText!!.addTextChangedListener(TextIsNotEmptyValidator(tilProductSize))
         tilProductPrice.editText!!.addTextChangedListener(NumberMustBePositive(tilProductPrice))
         tilProductQuantity.editText!!.addTextChangedListener(NumberMustBePositive(tilProductQuantity))
+
+        _binding!!.fabSave.setOnClickListener {
+            val result = viewModel.saveProduct(
+                tilProductName,
+                tilProductType,
+                tilProductBrand,
+                tilProductSize,
+                tilProductPrice,
+                tilProductQuantity,
+                tilProductDescription,
+                tilProductColor
+            )
+
+            if (result)
+            {
+                // back to previous fragment
+                findNavController().navigate(R.id.action_nav_insert_product_to_nav_product)
+            }
+        }
     }
 
     override fun onDestroyView()

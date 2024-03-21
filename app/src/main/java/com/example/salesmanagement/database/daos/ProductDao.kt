@@ -13,7 +13,7 @@ import com.example.salesmanagement.database.entities.Product
 interface ProductDao
 {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(product: Product)
+    suspend fun insert(product: Product)
 
     @Query("SELECT * FROM product ORDER BY id ASC")
     fun getAll(): LiveData<List<Product>>

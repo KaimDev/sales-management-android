@@ -7,7 +7,7 @@ class ProductRepository(private val productDao: ProductDao)
 {
     val products = productDao.getAll()
 
-    fun insert(product: Product)
+    suspend fun insert(product: Product)
     {
         productDao.insert(product)
     }
