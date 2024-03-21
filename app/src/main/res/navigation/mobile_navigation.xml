@@ -62,6 +62,9 @@
         <action
             android:id="@+id/action_nav_product_to_nav_insert_product"
             app:destination="@id/nav_insert_product" />
+        <action
+            android:id="@+id/action_nav_product_to_nav_update_product"
+            app:destination="@id/nav_update_product" />
 
     </fragment>
 
@@ -74,5 +77,19 @@
         <action
             android:id="@+id/action_nav_insert_product_to_nav_product"
             app:destination="@id/nav_product" />
+    </fragment>
+
+    <!--  UPDATE PRODUCT  -->
+    <fragment
+        android:id="@+id/nav_update_product"
+        android:name="com.example.salesmanagement.ui.product.update.UpdateProductFragment"
+        android:label="@string/graph_update_product"
+        tools:layout="@layout/fragment_update_product">
+        <action
+            android:id="@+id/action_nav_update_product_to_nav_product"
+            app:destination="@id/nav_product" />
+        <argument
+            android:name="currentProduct"
+            app:argType="com.example.salesmanagement.database.entities.Product" />
     </fragment>
 </navigation>

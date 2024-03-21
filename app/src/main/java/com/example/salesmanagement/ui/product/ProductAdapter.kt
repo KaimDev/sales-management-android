@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.salesmanagement.R
 import com.example.salesmanagement.database.entities.Product
@@ -30,6 +31,12 @@ class ProductAdapter(private val tvEmpty: TextView) : RecyclerView.Adapter<Produ
         holder.itemView.findViewById<TextView>(R.id.tvProductQuantityValue).text = currentItem.quantity.toString()
         holder.itemView.findViewById<TextView>(R.id.tvProductDescriptionValue).text = currentItem.description
         holder.itemView.findViewById<TextView>(R.id.tvProductColorValue).text = currentItem.color
+
+        // Navigate to update product fragment
+        holder.itemView.setOnClickListener {
+            val action = ProductFragmentDirections.actionNavProductToNavUpdateProduct(currentItem)
+            holder.itemView.findNavController().navigate(action)
+        }
     }
 
     override fun getItemCount(): Int = productList.size

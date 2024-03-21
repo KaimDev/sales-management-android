@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/product_holder_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp">
@@ -9,8 +10,8 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:strokeColor="#fff"
-        app:cardBackgroundColor="@color/cardBackgroundColor">
+        app:cardBackgroundColor="@color/cardBackgroundColor"
+        app:strokeColor="#fff">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -171,13 +172,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_toEndOf="@id/tvProductColorKey"
                 tools:text="Black" />
-
-            <!--            <LinearLayout-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="2dp"-->
-            <!--                android:layout_below="@id/tvProductColorKey"-->
-            <!--                android:layout_marginTop="10dp"-->
-            <!--                android:background="#DAD8D8" />-->
 
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
